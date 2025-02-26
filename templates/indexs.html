@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask Auth System{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mt-5">Welcome to Flask Authentication System</h1>
+    <p class="lead">A simple authentication system built with Flask and SQLAlchemy</p>
+    
+    {% if 'user_id' in session %}
+        <p>You are logged in as <strong>{{ session.username }}</strong></p>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+    {% else %}
+        <div class="mt-4">
+            <a href="{{ url_for('login') }}" class="btn btn-primary me-2">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-secondary">Register</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
