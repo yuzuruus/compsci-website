@@ -11,7 +11,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 CORS(app)  
-
+#initializing the databases
 def init_db():
     """Initialize the database and create tables if they don't exist"""
     conn = sqlite3.connect('portfolio.db')
@@ -95,6 +95,7 @@ def add_project():
     
     return jsonify({'id': project_id, 'message': 'Project added successfully'}), 201
 
+#methods for the contact form
 @app.route('/api/contact', methods=['POST'])
 def submit_contact():
     """Submit a contact form message"""

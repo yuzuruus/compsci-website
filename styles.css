@@ -1,4 +1,4 @@
-
+/*style background color*/
 body {
     background: radial-gradient(circle, rgba(82, 183, 136, 1), rgba(116, 198, 157, 1), rgba(216, 243, 220, 1) );
     
@@ -8,7 +8,7 @@ body {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
-
+/*style for homepage info card*/
 .infocard {
     width: 190px;
     height: 120px;
@@ -117,6 +117,7 @@ body {
     font-family:'Times New Roman', Times, serif
 }
 
+/*style for menu side bar*/
 .menu-btn {
     position: fixed;
     top: 20px;
@@ -189,7 +190,7 @@ html {
     padding: 80px 20px 20px 20px;
 }
 
-
+/*styles for skill bar and graph*/
 .skills-container {
     width: 100%;
     max-width: 600px;
@@ -234,12 +235,12 @@ html {
 }
 
 #skillChart {
-    max-width: 500px;  /* Adjust size */
+    max-width: 500px;  
     max-height: 500px;
 }
 
 
-
+/*style for contact form*/
 .contact-container {
     max-width: 600px;
     margin: 0 auto;
@@ -323,7 +324,7 @@ button:hover {
     }
 }
 
-
+/*style for socials cube*/
 .card {
 
   text-decoration: none; 

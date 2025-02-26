@@ -1,24 +1,5 @@
 
-async function getProjects() {
-    const response = await fetch('http://localhost:5000/api/projects');
-    const projects = await response.json();
-    return projects;
-}
-
-
-async function addProject(projectData) {
-    const response = await fetch('http://localhost:5000/api/projects', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(projectData)
-    });
-    return await response.json();
-}
-
-
-
+//side bar logic code
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active');
@@ -51,7 +32,7 @@ function isInViewport(element) {
     );
 }
 
-
+//skill bar logic code
 function animateSkillBars() {
     const skillBars = document.querySelectorAll('.skill-per');
     
@@ -63,7 +44,7 @@ function animateSkillBars() {
 }
 
 
-
+//contact form logic code
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     

@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# User model
+# User class made to store users
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -27,7 +27,7 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-# Login required decorator
+# Login required function
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -37,11 +37,12 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# Routes
+#method route to auth home page
 @app.route('/')
 def indexs():
     return render_template('indexs.html')
 
+#method route to register page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -85,6 +86,7 @@ def register():
     
     return render_template('register.html')
 
+#method route to login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -111,6 +113,7 @@ def login():
     
     return render_template('login.html')
 
+#method route to dashboard page
 @app.route('/dashboard')
 @login_required
 def dashboard():
