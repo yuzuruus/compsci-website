@@ -1,1 +1,1 @@
-poetry add gunicorn
+pip install gunicorn
