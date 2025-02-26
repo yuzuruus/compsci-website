@@ -153,6 +153,192 @@
     <section id="projects" class="page-section">
         <h1>Projects</h1>
         <p>Check out my work</p>
+
+<!--carousel displaying projects-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .carousel-container {
+            max-width: 900px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 500px;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .carousel-item-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .carousel-item h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .carousel-item p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .carousel-item .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-item .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            z-index: 10;
+        }
+        
+        .carousel-nav button {
+            background: #3498db;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-nav button:hover {
+            background-color: #2980b9;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .indicator.active {
+            background-color: #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel {
+                height: 400px;
+            }
+            
+            .carousel-item h2 {
+                font-size: 20px;
+            }
+            
+            .carousel-item p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="projectCarousel">
+            <!-- Project 1 -->
+            <div class="carousel-item" style="background-image: url('https://miro.medium.com/v2/resize:fit:1200/0*XwieR8qVuRK2_yaf.jpg');">
+                <div class="carousel-item-content">
+                    <h2>E-Commerce Website</h2>
+                    <p>A responsive e-commerce platform built with React and Node.js. Features include product filtering, user authentication, and payment processing.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="carousel-item" style="background-image: url('https://www.scbt.ca/wp-content/uploads/2018/11/mobile-app.jpg');">
+                <div class="carousel-item-content">
+                    <h2>Task Management App</h2>
+                    <p>A productivity application that helps users organize tasks, set priorities, and track progress. Built with Vue.js and Firebase.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="carousel-item" style="background-image: url('https://wpvip.edutopia.org/wp-content/uploads/2022/10/robinson-169hero-portfolio-shutterstock.jpg?w=2880&quality=85');">
+                <div class="carousel-item-content">
+                    <h2>Portfolio Website</h2>
+                    <p>A personal portfolio website showcasing projects and skills. Built with HTML, CSS, and JavaScript with a focus on responsive design.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="carousel-item" style="background-image: url('https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000213/img/basic/a0000213_main.jpg');">
+                <div class="carousel-item-content">
+                    <h2>Weather Dashboard</h2>
+                    <p>A weather application that provides real-time weather data and forecasts. Integrates with external APIs and features dynamic UI elements.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-nav">
+            <button id="prevBtn">&#10094;</button>
+            <button id="nextBtn">&#10095;</button>
+        </div>
+        
+        <div class="carousel-indicators" id="indicators">
+        </div>
+    </div>
+</body>
+</html>
     </section>
 
     <section id="contact" class="page-section">

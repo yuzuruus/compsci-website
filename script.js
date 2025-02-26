@@ -154,6 +154,130 @@ function showSuccess() {
     }, 5000);
 }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('projectCarousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.getElementById('indicators');
+            
+            let currentIndex = 0;
+            const totalItems = items.length;
+            
+            // Create indicators
+            for (let i = 0; i < totalItems; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === 0) {
+                    indicator.classList.add('active');
+                }
+                indicator.setAttribute('data-index', i);
+                indicators.appendChild(indicator);
+                
+                // Add click event to indicators
+                indicator.addEventListener('click', function() {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+            }
+            
+            // Auto rotate carousel every 5 seconds
+            let autoRotate = setInterval(nextSlide, 5000);
+            
+            // Reset timer when manually navigating
+            function resetTimer() {
+                clearInterval(autoRotate);
+                autoRotate = setInterval(nextSlide, 5000);
+            }
+            
+            // Next slide function
+            function nextSlide() {
+                if (currentIndex < totalItems - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarousel();
+            }
+            
+            // Previous slide function
+            function prevSlide() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = totalItems - 1;
+                }
+                updateCarousel();
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+                resetTimer();
+            }
+            
+            // Update carousel display
+            function updateCarousel() {
+                // Update carousel position
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update indicator
+                const allIndicators = indicators.querySelectorAll('.indicator');
+                allIndicators.forEach((ind, i) => {
+                    if (i === currentIndex) {
+                        ind.classList.add('active');
+                    } else {
+                        ind.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Event listeners for buttons
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetTimer();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetTimer();
+            });
+            
+            // Touch events for mobile swipe
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            carousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left - next slide
+                    nextSlide();
+                    resetTimer();
+                } else if (touchEndX > touchStartX + 50) {
+                    // Swipe right - previous slide
+                    prevSlide();
+                    resetTimer();
+                }
+            }
+            
+            // Pause auto-rotation when hovering over carousel
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoRotate);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoRotate = setInterval(nextSlide, 5000);
+            });
+        });
+
 window.addEventListener('load', animateSkillBars);
 window.addEventListener('scroll', animateSkillBars);
 
