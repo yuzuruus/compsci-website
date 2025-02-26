@@ -114,33 +114,6 @@ def submit_contact():
     
     return jsonify({'message': 'Message sent successfully'}), 201
 
-def send_email_with_sendgrid(data):
-    import os
-    from sendgrid import SendGridAPIClient
-    from sendgrid.helpers.mail import Mail
-    
-    message = Mail(
-        from_email='a.locke@surreyschools.ca',
-        to_emails='a.locke@surreyschools.ca',
-        subject=f"New Contact Form Submission from {data['name']}",
-        html_content=f"""
-        <p>You have received a new message from your website contact form:</p>
-        <p><strong>Name:</strong> {data['name']}</p>
-        <p><strong>Email:</strong> {data['email']}</p>
-        <p><strong>Message:</strong><br>{data['message']}</p>
-        """
-    )
-    
-    try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-        print(f"Email sent with status code: {response.status_code}")
-    except Exception as e:
-        print(f"Error sending email: {e}")
-
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
